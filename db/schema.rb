@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_24_111402) do
+ActiveRecord::Schema.define(version: 2020_03_24_200355) do
 
   create_table "all_data", id: false, force: :cascade do |t|
     t.text "Province/State"
@@ -89,6 +89,25 @@ ActiveRecord::Schema.define(version: 2020_03_24_111402) do
     t.text "3/20/20"
     t.text "3/21/20"
     t.text "3/22/20"
+  end
+
+  create_table "countries", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "days", force: :cascade do |t|
+    t.integer "country_id"
+    t.integer "region_id"
+    t.integer "cases"
+    t.integer "deaths"
+    t.integer "recovered"
+    t.string "date"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["country_id"], name: "index_days_on_country_id"
+    t.index ["region_id"], name: "index_days_on_region_id"
   end
 
   create_table "deaths", id: false, force: :cascade do |t|
@@ -233,6 +252,14 @@ ActiveRecord::Schema.define(version: 2020_03_24_111402) do
     t.text "3/20/20"
     t.text "3/21/20"
     t.text "3/22/20"
+  end
+
+  create_table "regions", force: :cascade do |t|
+    t.string "name"
+    t.integer "country_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["country_id"], name: "index_regions_on_country_id"
   end
 
   create_table "users", force: :cascade do |t|

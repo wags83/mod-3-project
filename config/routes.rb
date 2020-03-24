@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :days
+  resources :regions
+  resources :countries
   resources :favorites, only: [:create, :destroy]
   resources :users, only: [:index, :create, :destroy]
   # namespace :api do
