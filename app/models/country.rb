@@ -20,6 +20,13 @@ class Country < ApplicationRecord
             Day.create(country_id: country_id, date: date, cases: cases, deaths: deaths, recovered: recovered)
         end
     end
+    
+    def self.add_all_files_csv_data(folderpath)
+        directory = Dir["#{folderpath}/*.csv"]
+        directory.each do |filepath|
+            add_csv_data(filepath)
+        end
+    end
 
     def self.update_latest_data
         LatestDatum.all.each {|data| data.destroy}
