@@ -7,7 +7,7 @@ class CountriesController < ApplicationController
     
     def show
         country = Country.find(params[:id])
-        sorted_by_date = country.days.sort{|a,b| b.date <=> a.date}
+        sorted_by_date = country.days.sort{|a,b| a.date <=> b.date}
         render json: sorted_by_date
     end
     

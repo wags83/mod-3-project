@@ -1,2 +1,0 @@
-class AllDatum < ApplicationRecord
-end
