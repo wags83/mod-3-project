@@ -99,7 +99,6 @@ ActiveRecord::Schema.define(version: 2020_03_24_200355) do
 
   create_table "days", force: :cascade do |t|
     t.integer "country_id"
-    t.integer "region_id"
     t.integer "cases"
     t.integer "deaths"
     t.integer "recovered"
@@ -107,7 +106,6 @@ ActiveRecord::Schema.define(version: 2020_03_24_200355) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["country_id"], name: "index_days_on_country_id"
-    t.index ["region_id"], name: "index_days_on_region_id"
   end
 
   create_table "deaths", id: false, force: :cascade do |t|
