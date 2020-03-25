@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_24_200355) do
+ActiveRecord::Schema.define(version: 2020_03_25_023800) do
 
   create_table "all_data", id: false, force: :cascade do |t|
     t.text "Province/State"
@@ -182,6 +182,17 @@ ActiveRecord::Schema.define(version: 2020_03_24_200355) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_favorites_on_user_id"
+  end
+
+  create_table "latest_data", force: :cascade do |t|
+    t.integer "country_id"
+    t.integer "cases"
+    t.integer "deaths"
+    t.integer "recovered"
+    t.string "date"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["country_id"], name: "index_latest_data_on_country_id"
   end
 
   create_table "recovered", id: false, force: :cascade do |t|

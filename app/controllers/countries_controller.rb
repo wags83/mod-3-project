@@ -10,6 +10,9 @@ class CountriesController < ApplicationController
         render json: country.days
     end
     
-
+    def latest_data
+        latest_data = LatestDatum.all
+        render json: latest_data
+    end
 
 end

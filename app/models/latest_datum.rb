@@ -1,0 +1,2 @@
+class LatestDatum < ApplicationRecord
+end

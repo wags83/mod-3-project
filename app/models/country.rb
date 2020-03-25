@@ -20,4 +20,20 @@ class Country < ApplicationRecord
             Day.create(country_id: country_id, date: date, cases: cases, deaths: deaths, recovered: recovered)
         end
     end
+
+    def self.update_latest_data
+        LatestDatum.all.each {|data| data.destroy}
+        Country.all.each do |country|
+            sorted_days = country.days.sort{|a, b| b.date <=> a.date}
+
+            country_id = country.id
+            date = sorted_days[0].date
+            cases = sorted_days[0].cases
+            deaths = sorted_days[0].deaths
+            recovered = sorted_days[0].recovered
+
+            LatestDatum.create(country_id: country_id, date: date, cases: cases, deaths: deaths, recovered: recovered)
+        end
+    end
+
 end
