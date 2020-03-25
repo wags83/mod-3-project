@@ -13,7 +13,7 @@ class CountriesController < ApplicationController
     
     def latest_data
         latest_data = LatestDatum.all
-        render json: latest_data
+        render json: latest_data.to_json(:include => {:country => {only: :name}})
     end
 
 end
