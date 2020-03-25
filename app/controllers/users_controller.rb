@@ -1,20 +1,20 @@
 class UsersController < ApplicationController
 
     def create
-        @user = User.new(params[:user])
-        if @user.save
-          flash[:success] = "User successfully created"
+        user = User.new(params[:user])
+        if user.save
+            render json: user
         else
-          flash[:error] = "Something went wrong"
+            render json: "Something went wrong.".to_json  
         end
     end
 
     def destroy
-        @user = User.find(params[:id])
-        if @user.destroy
-            flash[:success] = 'User was successfully deleted.'
+        user = User.find(params[:id])
+        if user.destroy
+            render json: "User successfully deleted.".to_json
         else
-            flash[:error] = 'Something went wrong'
+            render json: "Something went wrong.".to_json  
         end
     end
 

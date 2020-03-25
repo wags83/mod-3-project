@@ -1,20 +1,20 @@
 class FavoritesController < ApplicationController
 
     def create
-        @favorite = Favorite.new(favorite_params)
-        if @favorite.save
-          flash[:success] = "Favorite successfully created"
+        favorite = Favorite.new(favorite_params)
+        if favorite.save
+          render json: favorite
         else
-          flash[:error] = "Something went wrong"
+          render json: "Something went wrong.".to_json
         end
     end
 
     def destroy
-        @favorite = Favorite.find(params[:id])
-        if @favorite.destroy
-            flash[:success] = 'Favorite was successfully deleted.'
+        favorite = Favorite.find(params[:id])
+        if favorite.destroy
+            render json: "Favorite successfully deleted.".to_json
         else
-            flash[:error] = 'Something went wrong'
+            render json: "Something went wrong.".to_json        
         end
     end
 

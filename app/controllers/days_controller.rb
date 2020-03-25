@@ -8,18 +8,18 @@ class DaysController < ApplicationController
     def create
         day = Day.new(day_params)
         if day.save
-          flash[:success] = "Day successfully created"
+          render json: day
         else
-          flash[:error] = "Something went wrong"
+          render json: "Something went wrong.".to_json   
         end
     end
 
     def destroy
         day = Day.find(params[:id])
         if day.destroy
-            flash[:success] = 'Day was successfully deleted.'
+            render json: "Day successfully deleted.".to_json
         else
-            flash[:error] = 'Something went wrong'
+            render json: "Something went wrong.".to_json    
         end
     end
     
