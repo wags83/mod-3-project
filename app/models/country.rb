@@ -50,8 +50,8 @@ class Country < ApplicationRecord
                 country = "Taiwan"
             end
             
-            if country == "United Kingdom" 
-                country = "UK"
+            if country == "UK" 
+                country = "United Kingdom"
             end
 
             if country == "Viet Nam" 
