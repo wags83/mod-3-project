@@ -17,7 +17,7 @@ class DaysController < ApplicationController
     def destroy
         day = Day.find(params[:id])
         if day.destroy
-            render json: "Day successfully deleted.".to_json
+            render json: day
         else
             render json: "Something went wrong.".to_json    
         end

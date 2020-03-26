@@ -12,7 +12,7 @@ class FavoritesController < ApplicationController
     def destroy
         favorite = Favorite.find(params[:id])
         if favorite.destroy
-            render json: "Favorite successfully deleted.".to_json
+            render json: favorite
         else
             render json: "Something went wrong.".to_json        
         end
