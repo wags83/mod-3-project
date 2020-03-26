@@ -138,12 +138,18 @@ class Country < ApplicationRecord
             date = latest_data.date
             population = latest_data.country.population.to_f
             country_id = latest_data.country_id
-            cases = (latest_data.cases.to_f / population) * 100000
-            deaths = (latest_data.deaths.to_f / population) * 100000
-            recovered = (latest_data.recovered.to_f / population) * 100000
+            cases = ((latest_data.cases.to_f / population) * 100000).round(3)
+            deaths = ((latest_data.deaths.to_f / population) * 100000).round(3)
+            recovered = ((latest_data.recovered.to_f / population) * 100000).round(3)
             PopulationDatum.create(country_id: country_id, date: date, cases: cases, deaths: deaths, recovered: recovered)
         end
+
     end
+    san_marino = Country.find_by(name: "San Marino").id
+    andorra = Country.find_by(name: "Andorra").id
+    PopulationDatum.find_by(country_id: san_marino).destroy
+    PopulationDatum.find_by(country_id: andorra).destroy
+
     end
             
 end
