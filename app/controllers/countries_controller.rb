@@ -16,4 +16,9 @@ class CountriesController < ApplicationController
         render json: latest_data.to_json(:include => {:country => {only: :name}})
     end
 
+    def latest_data_by_population
+        latest_data_by_population = PopulationDatum.all
+        render json: latest_data_by_population.to_json(:include => {:country => {only: :name}})
+    end
+
 end

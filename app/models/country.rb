@@ -1,6 +1,14 @@
 class Country < ApplicationRecord
     has_many :days
     has_one :latest_data
+    has_one :population_data
+
+    def self.update_db(csv_folderpath, population_filepath)
+        Country.add_all_files_csv_data(csv_folderpath)
+        Country.add_population_data(population_filepath)
+        Country.update_latest_data
+        Country.update_latest_data_by_population
+    end
 
     def self.add_csv_data(folderpath, filename)
         data = CSV.read("#{folderpath}/#{filename}", headers: true)
@@ -109,4 +117,33 @@ class Country < ApplicationRecord
         end
     end
 
+    def self.add_population_data(filepath)
+        data = CSV.read(filepath, headers: true)
+        data.each do |row|
+
+            country_name = row[1]
+            population = row[4].to_f * 1000000
+
+            if Country.find_by(name: country_name)
+                country = Country.find_by(name: country_name)
+                country.update(population: population)
+            end
+        end
+    end
+
+    def self.update_latest_data_by_population
+        PopulationDatum.all.each {|data| data.destroy}
+        LatestDatum.all.each do |latest_data|
+        if latest_data.country.population != nil
+            date = latest_data.date
+            population = latest_data.country.population.to_f
+            country_id = latest_data.country_id
+            cases = (latest_data.cases.to_f / population) * 100000
+            deaths = (latest_data.deaths.to_f / population) * 100000
+            recovered = (latest_data.recovered.to_f / population) * 100000
+            PopulationDatum.create(country_id: country_id, date: date, cases: cases, deaths: deaths, recovered: recovered)
+        end
+    end
+    end
+            
 end
