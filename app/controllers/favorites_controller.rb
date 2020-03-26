@@ -3,7 +3,7 @@ class FavoritesController < ApplicationController
     def create
         favorite = Favorite.new(favorite_params)
         if favorite.save
-          render json: favorite
+            render json: favorite.to_json(:include => :country)
         else
           render json: "Something went wrong.".to_json
         end
@@ -12,7 +12,7 @@ class FavoritesController < ApplicationController
     def destroy
         favorite = Favorite.find(params[:id])
         if favorite.destroy
-            render json: favorite
+            render json: favorite.to_json(:include => :country)
         else
             render json: "Something went wrong.".to_json        
         end

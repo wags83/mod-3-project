@@ -20,7 +20,7 @@ class UsersController < ApplicationController
 
     def show
         user = User.find(params[:id])
-        render json: user.favorites.to_json(:include => {:user => {only: :username}})
+        render json: user.favorites.to_json(:include => :country)
     end
 
     private

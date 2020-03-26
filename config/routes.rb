@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :population_data
   resources :days, except: [:index, :create, :destroy]
   resources :countries, only: [:show, :index]
   resources :favorites, only: [:show, :create, :destroy]
