@@ -1,24 +1,8 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Designed JavaScript front end to allow users to see information about COVID-19 cases in various geographies and drill into the regions they care about most for more detailed information.  
 
-Things you may want to cover:
+Implemented Ruby on Rails backend supplies data and manages a Postgres database.  Ruby was also used to process and synthesize data from various sources and in different formats.
 
-* Ruby version
+Front end repo: https://github.com/wags83/corona-map-front
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
