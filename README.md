@@ -4,5 +4,7 @@ Designed JavaScript front end to allow users to see information about COVID-19 c
 
 Implemented Ruby on Rails backend supplies data and manages a Postgres database.  Ruby was also used to process and synthesize data from various sources and in different formats.
 
+Demo: https://www.youtube.com/watch?v=m4qx6mtJte4
+
 Front end repo: https://github.com/wags83/corona-map-front
 
